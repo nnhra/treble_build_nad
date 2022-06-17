@@ -13,7 +13,7 @@ index d056b6c..30eb125 100644
 --- a/build/soong/Android.bp
 +++ b/build/soong/Android.bp
 @@ -20,9 +20,6 @@ bootstrap_go_package {
- miku_generator {
+ nad_generator {
      name: "generated_kernel_includes",
  
 -    // The headers make command
@@ -22,7 +22,7 @@ index d056b6c..30eb125 100644
      // Directories that can be imported by a cc_* module generated_headers property
      export_include_dirs: [
          "usr/audio/include/uapi",
-@@ -30,10 +27,6 @@ miku_generator {
+@@ -30,10 +27,6 @@ nad_generator {
          "usr/include/audio/include/uapi",
          "usr/techpack/audio/include"
      ],
