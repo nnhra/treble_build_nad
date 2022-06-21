@@ -6,13 +6,13 @@ Subject: [PATCH 01/14] treble: Miku UI Bringup
 Signed-off-by: xiaoleGun <1592501605@qq.com>
 ---
  base.mk                                       |  5 ++++-
- miku.mk                                       |  7 +++++++
+ nad.mk                                        |  7 +++++++
  .../dialer/callrecord/res/values/config.xml   | 18 ++++++++++++++++++
- .../apps/Settings/res/values/miku_strings.xml | 19 +++++++++++++++++++
+ .../apps/Settings/res/values/nad_strings.xml  | 19 +++++++++++++++++++
  4 files changed, 48 insertions(+), 1 deletion(-)
- create mode 100644 miku.mk
- create mode 100644 overlay-miku/packages/apps/Dialer/java/com/android/dialer/callrecord/res/values/config.xml
- create mode 100644 overlay-miku/packages/apps/Settings/res/values/miku_strings.xml
+ create mode 100644 nad.mk
+ create mode 100644 overlay-nad/packages/apps/Dialer/java/com/android/dialer/callrecord/res/values/config.xml
+ create mode 100644 overlay-nad/packages/apps/Settings/res/values/nad_strings.xml
 
 diff --git a/base.mk b/base.mk
 index 62e5d18..bd5f178 100644
@@ -26,29 +26,29 @@ index 62e5d18..bd5f178 100644
 +
 +PRODUCT_PACKAGE_OVERLAYS += \
 +    device/phh/treble/overlay \
-+	device/phh/treble/overlay-miku
++	device/phh/treble/overlay-nad
  
  $(call inherit-product, vendor/hardware_overlay/overlay.mk)
  $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-diff --git a/miku.mk b/miku.mk
+diff --git a/nad.mk b/nad.mk
 new file mode 100644
 index 0000000..bc0a208
 --- /dev/null
-+++ b/miku.mk
++++ b/nad.mk
 @@ -0,0 +1,7 @@
-+# Inherit some common Miku stuff
-+$(call inherit-product, vendor/miku/build/product/miku_product.mk)
-+$(call inherit-product, device/miku/sepolicy/common/sepolicy.mk)
-+-include vendor/miku/build/core/config.mk
++# Inherit some common NusantaraProject stuff
++$(call inherit-product, vendor/nad/build/product/nad_product.mk)
++$(call inherit-product, device/nad/sepolicy/common/sepolicy.mk)
++-include vendor/nad/build/core/config.mk
 +
 +# Maintaier
-+MIKU_MASTER := xiaoleGun
++NAD_MAINTAINER := ItzKaguya | MizuNotCool
 \ No newline at end of file
-diff --git a/overlay-miku/packages/apps/Dialer/java/com/android/dialer/callrecord/res/values/config.xml b/overlay-miku/packages/apps/Dialer/java/com/android/dialer/callrecord/res/values/config.xml
+diff --git a/overlay-nad/packages/apps/Dialer/java/com/android/dialer/callrecord/res/values/config.xml b/overlay-nad/packages/apps/Dialer/java/com/android/dialer/callrecord/res/values/config.xml
 new file mode 100644
 index 0000000..c9a2e32
 --- /dev/null
-+++ b/overlay-miku/packages/apps/Dialer/java/com/android/dialer/callrecord/res/values/config.xml
++++ b/overlay-nad/packages/apps/Dialer/java/com/android/dialer/callrecord/res/values/config.xml
 @@ -0,0 +1,18 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<!--
@@ -69,15 +69,15 @@ index 0000000..c9a2e32
 +    <integer name="call_recording_audio_source">4</integer>
 +</resources>
 \ No newline at end of file
-diff --git a/overlay-miku/packages/apps/Settings/res/values/miku_strings.xml b/overlay-miku/packages/apps/Settings/res/values/miku_strings.xml
+diff --git a/overlay-nad/packages/apps/Settings/res/values/nad_strings.xml b/overlay-nad/packages/apps/Settings/res/values/nad_strings.xml
 new file mode 100644
 index 0000000..15887ba
 --- /dev/null
-+++ b/overlay-miku/packages/apps/Settings/res/values/miku_strings.xml
++++ b/overlay-nad/packages/apps/Settings/res/values/nad_strings.xml
 @@ -0,0 +1,19 @@
 +<?xml version="1.0" encoding="utf-8"?>
 +<!--
-+     Copyright 2021 Miku UI
++     Copyright 2021 NusantaraProject
 +     Licensed under the Apache License, Version 2.0 (the "License");
 +     you may not use this file except in compliance with the License.
 +     You may obtain a copy of the License at
@@ -91,7 +91,7 @@ index 0000000..15887ba
 +<resources>
 +
 +    <!-- Maintainer Url -->
-+    <string name="miku_maintainer_uri" translatable="false">https://github.com/xiaoleGun</string>
++    <string name="nad_maintainer_uri" translatable="false">https://github.com/MizuNotCool</string>
 +
 +</resources>
 \ No newline at end of file
