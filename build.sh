@@ -10,15 +10,15 @@ set -e
 START=`date +%s`
 BUILD_DATE="$(date +%Y%m%d)"
 WITHOUT_CHECK_API=true
-BL=$PWD/treble_build_miku
+BL=$PWD/treble_build_nad
 BD=$HOME/builds
 VERSION="0.5.0"
 
 syncrepo() {
 if [ ! -d .repo ]
 then
-    echo "Initializing Miku UI workspace"
-    repo init -u https://github.com/Miku-UI/manifesto -b snowland --depth=1
+    echo "Initializing NusantaraProject workspace"
+      repo init -u https://github.com/NusantaraProject-ROM/android_manifest -b 10
     echo ""
 fi
 
@@ -28,7 +28,7 @@ then
     then
      echo "Preparing local manifest"
      mkdir -p .repo/local_manifests
-     cp ./treble_build_miku/local_manifests_treble/manifest.xml .repo/local_manifests/miku-treble.xml
+     cp ./treble_build_nad/local_manifests_treble/manifest.xml .repo/local_manifests/nad-treble.xml
      echo ""
     fi 
 fi
@@ -71,7 +71,7 @@ echo "Treble device generation"
 rm -rf device/*/sepolicy/common/private/genfs_contexts
 cd device/phh/treble
 git clean -fdx
-bash generate.sh miku
+bash generate.sh nad
 cd ../../..
 echo ""
 }
@@ -84,27 +84,27 @@ buildTrebleApp() {
 }
 
 buildtreble() {
-    lunch miku_treble_a64_bvS-userdebug
+    lunch nad_treble_a64_bvS-userdebug
     make installclean
     make -j$(nproc --all) systemimage
-    mv $OUT/system.img $BD/system-miku_treble_a64_bvS.img
+    mv $OUT/system.img $BD/system-nad_treble_a64_bvS.img
     sleep 1
-    lunch miku_treble_a64_bgS-userdebug
+    lunch nad_treble_a64_bgS-userdebug
     make -j$(nproc --all) systemimage
-    mv $OUT/system.img $BD/system-miku_treble_a64_bgS.img
+    mv $OUT/system.img $BD/system-nad_treble_a64_bgS.img
 }
 
 buildSasImages() {
     cd sas-creator
-    sudo bash lite-adapter.sh 64 $BD/system-miku_treble_a64_bvS.img
-    cp s.img $BD/system-miku_treble_a64_bvS-vndklite.img
+    sudo bash lite-adapter.sh 64 $BD/system-nad_treble_a64_bvS.img
+    cp s.img $BD/system-nad_treble_a64_bvS-vndklite.img
     sudo bash securize.sh s.img
-    cp s-secure.img $BD/system-miku_treble_a64_bvS-vndklite-secure.img
+    cp s-secure.img $BD/system-nad_treble_a64_bvS-vndklite-secure.img
     sudo rm -rf s.img  s-secure.img d tmp
-    sudo bash lite-adapter.sh 64 $BD/system-miku_treble_a64_bgS.img
-    cp s.img $BD/system-miku_treble_a64_bgS-vndklite.img
+    sudo bash lite-adapter.sh 64 $BD/system-nad_treble_a64_bgS.img
+    cp s.img $BD/system-nad_treble_a64_bgS-vndklite.img
     sudo bash securize.sh s.img
-    cp s-secure.img $BD/system-miku_treble_a64_bgS-vndklite-secure.img
+    cp s-secure.img $BD/system-nad_treble_a64_bgS-vndklite-secure.img
     sudo rm -rf s.img  s-secure.img d tmp
     cd ..
 }
