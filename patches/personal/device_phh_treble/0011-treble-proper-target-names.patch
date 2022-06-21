@@ -15,8 +15,8 @@ index 352fe12..07e65b5 100644
  				fi
  
  				target="treble_${arch}_${part_suffix}${apps_suffix}${su_suffix}"
-+				if [ "$1" == "miku" ];then
-+					target="miku_${target}"
++				if [ "$1" == "nad" ];then
++					target="nad_${target}"
 +				fi
  
  				baseArch="$arch"
