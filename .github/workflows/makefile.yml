@@ -24,7 +24,7 @@ jobs:
       run: ls
 
     - name: Install repo
-      run: mkdir ~/bin && PATH=~/bin:$PATH
+      run: mkdir ~/bin && PATH=~/bin:$PATH && export PATH
       
     - name: repo check
       run: curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo
